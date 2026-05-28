@@ -314,20 +314,20 @@ export default function HomePage() {
                   <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-gold-500/50" />
                   <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-gold-500/50" />
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
                     <div className="gold-divider w-6 my-0" />
-                    <span className="text-[10px] tracking-[0.3em] uppercase text-gold-500 font-semibold">
+                    <span className="text-xs tracking-[0.3em] uppercase text-gold-500 font-semibold">
                       {c.label}
                     </span>
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-white mb-3">{c.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-5">{c.body}</p>
-                  <div className="border-t border-cinema-700 pt-4 flex flex-col gap-2">
+                  <h3 className="font-serif text-2xl font-bold text-white mb-4">{c.title}</h3>
+                  <p className="text-gray-300 text-base leading-relaxed mb-6">{c.body}</p>
+                  <div className="border-t border-cinema-700 pt-5 flex flex-col gap-3">
                     {c.specs.map((spec) => (
-                      <div key={spec} className="flex items-center gap-2.5">
-                        <div className="w-1 h-1 rounded-full bg-gold-500/60 flex-shrink-0" />
-                        <span className="text-xs text-gray-500">{spec}</span>
+                      <div key={spec} className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-gold-500/70 flex-shrink-0" />
+                        <span className="text-sm text-gray-400">{spec}</span>
                       </div>
                     ))}
                   </div>
@@ -391,8 +391,8 @@ export default function HomePage() {
             {whyItWorks.map((item) => (
               <div key={item.title} className="bg-cinema-950 p-8 hover:bg-cinema-900 transition-colors group">
                 <div className="gold-divider w-8 mb-5 group-hover:w-12 transition-all duration-300" />
-                <h3 className="font-serif text-lg font-bold text-white mb-3">{item.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{item.body}</p>
+                <h3 className="font-serif text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-gray-300 text-base leading-relaxed">{item.body}</p>
               </div>
             ))}
           </div>
@@ -581,8 +581,8 @@ export default function HomePage() {
             {dealerBenefits.map((b) => (
               <div key={b.title} className="bg-cinema-900 p-8 hover:bg-cinema-800 transition-colors group">
                 <div className="gold-divider w-8 mb-5 group-hover:w-12 transition-all duration-300" />
-                <h3 className="font-serif text-lg font-bold text-white mb-3">{b.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{b.description}</p>
+                <h3 className="font-serif text-xl font-bold text-white mb-3">{b.title}</h3>
+                <p className="text-gray-300 text-base leading-relaxed">{b.description}</p>
               </div>
             ))}
           </div>
@@ -593,7 +593,7 @@ export default function HomePage() {
       <section className="relative py-24 px-6 lg:px-12 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/6894492956658708246.jpg"
+            src="/images/denver-render-rear.jpg"
             alt=""
             fill
             className="object-cover object-center"
