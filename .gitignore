@@ -3,3 +3,9 @@ node_modules/
 .env.local
 *.tsbuildinfo
 .DS_Store
+
+# Large original image files — use optimized .jpg versions instead
+public/images/*.jpeg
+public/images/*.PNG
+public/images/IMG_*.png
+public/images/*\(1\).jpg

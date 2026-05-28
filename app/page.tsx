@@ -1,10 +1,11 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "CineLuxe — Private Cinema for Discerning Clients",
+  title: "CineLuxe — Private Cinema Systems for Discerning Integrators",
   description:
-    "Become an authorized CineLuxe dealer. Offer your clients the world's finest private cinema systems for luxury residences, yachts, and premium venues.",
+    "Become an authorized CineLuxe dealer. Our bespoke acoustic panel cinema systems transform any room into a world-class private screening environment — by design.",
 };
 
 const stats = [
@@ -19,28 +20,40 @@ const systemPillars = [
     id: "projection",
     label: "Projection",
     title: "Reference-Grade Optics",
-    body: "We specify and calibrate only the finest 4K laser projectors — delivering color accuracy, contrast, and brightness that transforms any room into a true reference screening environment. No compromises on the image.",
+    body: "Every CineLuxe system is anchored by a calibrated 4K laser projection setup specified for the exact room — throw distance, screen gain, ambient conditions. The image isn't configured. It's engineered.",
     spec1: "4K Laser Projection",
     spec2: "Calibrated to DCI-P3",
     spec3: "12,000+ Lumens",
+    image: "/images/denver-render-front.jpg",
+    imageAlt: "CineLuxe flagship installation — front projection view",
+    imageW: 1552,
+    imageH: 866,
   },
   {
     id: "audio",
     label: "Audio",
-    title: "Immersive Sound Architecture",
-    body: "From discrete Dolby Atmos object-based audio to fully bespoke speaker arrays, CineLuxe audio systems are engineered and tuned for the specific dimensions and materials of each space — not adapted from a showroom template.",
+    title: "Sound Built for the Space",
+    body: "Speaker placement, amplification, and DSP tuning are modeled around the room's geometry before a single component is ordered. The result is object-based audio that feels native to the space — not installed into it.",
     spec1: "Dolby Atmos / DTS:X",
     spec2: "Custom Speaker Arrays",
     spec3: "Room-Tuned DSP",
+    image: "/images/denver-render-side.jpg",
+    imageAlt: "CineLuxe installation — side wall acoustic panel detail",
+    imageW: 1726,
+    imageH: 865,
   },
   {
     id: "acoustics",
-    label: "Acoustics",
-    title: "Precision Acoustic Design",
-    body: "The finest projection and audio systems in the world are wasted in an untreated room. Our acoustic engineers design bespoke panel layouts, materials, and seating configurations to achieve a room that sounds as extraordinary as it looks.",
-    spec1: "RT60 Optimized",
-    spec2: "Bespoke Panel Design",
-    spec3: "Diffusion & Absorption",
+    label: "Acoustic Panels",
+    title: "The Room Is the System",
+    body: "CineLuxe's defining element is the architectural acoustic panel array. Each panel is positioned and specified to control reflection, diffusion, and absorption — while simultaneously defining the room's visual identity. The treatment isn't hidden. It is the design.",
+    spec1: "Custom Panel Configuration",
+    spec2: "Diffusion & Absorption",
+    spec3: "RT60 Optimized Per Room",
+    image: "/images/render-small-room-a.jpg",
+    imageAlt: "CineLuxe acoustic design — full room render",
+    imageW: 2880,
+    imageH: 1620,
   },
 ];
 
@@ -104,64 +117,45 @@ const dealerBenefits = [
   },
 ];
 
+const galleryImages = [
+  { src: "/images/2390031948913825473.jpg", alt: "CineLuxe private cinema installation" },
+  { src: "/images/3467950884395237053.jpg", alt: "CineLuxe screening room — acoustic detail" },
+  { src: "/images/5858629690666302780.jpg", alt: "CineLuxe render — luxury cinema environment" },
+  { src: "/images/7865285807327135041.jpg", alt: "CineLuxe flagship installation render" },
+  { src: "/images/8715399246450177116.jpg", alt: "CineLuxe private cinema — full room view" },
+  { src: "/images/denver-render-rear.jpg", alt: "CineLuxe Denver showroom — seating view" },
+];
+
 export default function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
       <section className="relative min-h-[95vh] flex items-center overflow-hidden bg-cinema-950">
-        {/* Subtle grid */}
+        {/* Full-bleed background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero-cinema.jpg"
+            alt="CineLuxe private cinema flagship installation"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          {/* Dark gradient overlay — heavier on left for text legibility, lighter on right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cinema-950 via-cinema-950/85 to-cinema-950/40" />
+          {/* Bottom fade */}
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-cinema-950 to-transparent" />
+        </div>
+
+        {/* Subtle grid overlay */}
         <div
-          className="absolute inset-0 opacity-[0.035]"
+          className="absolute inset-0 opacity-[0.02] pointer-events-none"
           style={{
             backgroundImage:
               "linear-gradient(rgba(212,160,23,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,160,23,1) 1px, transparent 1px)",
             backgroundSize: "80px 80px",
           }}
         />
-
-        {/* Right-side cinema panel visual */}
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:flex items-stretch pointer-events-none">
-          {/* Simulated acoustic side-wall panel array */}
-          <div className="flex gap-2 items-stretch w-full px-8 py-20 opacity-60">
-            {[...Array(7)].map((_, i) => (
-              <div
-                key={i}
-                className="flex-1 rounded-sm border border-gold-500/10 bg-gradient-to-b from-cinema-900 to-cinema-950"
-                style={{ opacity: 0.4 + (i % 3) * 0.2 }}
-              />
-            ))}
-          </div>
-          {/* Main screen silhouette */}
-          <div className="absolute inset-0 flex items-center justify-center px-16 py-24">
-            <div className="w-full aspect-video relative rounded-sm overflow-hidden border border-cinema-700/60">
-              <div className="absolute inset-0 bg-gradient-to-br from-cinema-900 via-cinema-950 to-black" />
-              {/* Screen glow */}
-              <div className="absolute inset-0 bg-gradient-to-b from-gold-500/[0.03] via-transparent to-transparent" />
-              {/* Corner accents */}
-              <div className="absolute top-4 left-4 w-10 h-10 border-t-2 border-l-2 border-gold-500/50" />
-              <div className="absolute top-4 right-4 w-10 h-10 border-t-2 border-r-2 border-gold-500/50" />
-              <div className="absolute bottom-4 left-4 w-10 h-10 border-b-2 border-l-2 border-gold-500/50" />
-              <div className="absolute bottom-4 right-4 w-10 h-10 border-b-2 border-r-2 border-gold-500/50" />
-              {/* Placeholder label */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                <div className="w-12 h-0.5 bg-gold-500/30" />
-                <p className="text-gray-700 text-[10px] tracking-[0.4em] uppercase">Cinema Photography</p>
-                <div className="w-12 h-0.5 bg-gold-500/30" />
-              </div>
-              {/* Projection beam suggestion */}
-              <div
-                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-24 opacity-10"
-                style={{
-                  background: "linear-gradient(to top, rgba(212,160,23,0.6), transparent)",
-                  filter: "blur(4px)",
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Fade right edge on lg+ */}
-        <div className="absolute right-0 top-0 bottom-0 w-96 bg-gradient-to-r from-transparent to-cinema-950/80 hidden lg:block pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-24 w-full">
           <div className="max-w-2xl">
@@ -173,19 +167,20 @@ export default function HomePage() {
             </div>
 
             <h1 className="section-title mb-6 leading-tight">
-              The World&apos;s Finest{" "}
-              <span className="gold-text">Private Cinema.</span>{" "}
-              Now in Your Portfolio.
+              Private Cinema Where{" "}
+              <span className="gold-text">Every Surface</span>{" "}
+              Is Intentional.
             </h1>
 
             <p className="text-gray-400 text-lg leading-relaxed mb-4 max-w-xl">
-              CineLuxe designs and installs bespoke private cinema environments for ultra-luxury
-              residences, superyachts, hotels, and developer projects worldwide.
+              CineLuxe builds private cinema rooms from the walls out. Our bespoke acoustic
+              panel systems define how a room looks, sounds, and feels — engineered together
+              as a single architectural statement.
             </p>
             <p className="text-gray-500 text-base leading-relaxed mb-10 max-w-xl">
               Our authorized dealer program gives AV integrators, luxury designers, and premium
-              builders access to our systems, our design team, and the fastest-growing category
-              in luxury amenities.
+              builders access to our systems, our design team, and a product category
+              their high-end clients are actively looking for.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -234,42 +229,37 @@ export default function HomePage() {
             </div>
             <h2 className="section-title mb-4">The CineLuxe System</h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-base leading-relaxed">
-              Every installation combines three disciplines — projection, audio, and acoustics —
-              engineered together as a single bespoke system. We don&apos;t retrofit. We design from scratch.
+              Projection, audio, and architectural acoustic panels — designed together from the
+              first sketch. The room isn&apos;t treated after the fact. The treatment is the room.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {systemPillars.map((pillar, idx) => (
-              <div key={pillar.id} className="group relative overflow-hidden border border-cinema-700 bg-cinema-900 hover:border-gold-500/30 transition-all duration-500">
-                {/* Image placeholder slot */}
-                <div className="aspect-[4/3] relative bg-cinema-950 border-b border-cinema-700 overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cinema-900 to-cinema-950" />
-                  {/* Simulated panel array inside each card */}
-                  <div className="absolute inset-0 flex items-end gap-1.5 px-4 pb-0 opacity-20">
-                    {[...Array(9)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 bg-gradient-to-t from-gold-500/40 to-transparent rounded-t-sm"
-                        style={{ height: `${40 + Math.sin(i) * 30}%` }}
-                      />
-                    ))}
-                  </div>
+              <div
+                key={pillar.id}
+                className="group relative overflow-hidden border border-cinema-700 bg-cinema-900 hover:border-gold-500/30 transition-all duration-500"
+              >
+                {/* Real image */}
+                <div className="aspect-[16/9] relative overflow-hidden">
+                  <Image
+                    src={pillar.image}
+                    alt={pillar.imageAlt}
+                    fill
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                  />
+                  {/* Dark overlay */}
+                  <div className="absolute inset-0 bg-cinema-950/30 group-hover:bg-cinema-950/10 transition-colors duration-500" />
                   {/* Pillar number */}
                   <div className="absolute top-4 left-4">
-                    <span className="text-xs tracking-[0.3em] text-gold-500/60 font-mono">
+                    <span className="text-xs tracking-[0.3em] text-gold-400/80 font-mono drop-shadow-lg">
                       0{idx + 1}
                     </span>
                   </div>
                   {/* Corner accent */}
-                  <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-gold-500/30" />
-                  <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-gold-500/30" />
-                  {/* Label */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                    <p className="text-gray-700 text-[9px] tracking-[0.5em] uppercase">
-                      {pillar.label} Photography
-                    </p>
-                  </div>
+                  <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-gold-500/50" />
+                  <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-gold-500/50" />
                 </div>
 
                 {/* Content */}
@@ -302,40 +292,73 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FULL-WIDTH CINEMA VISUAL ── */}
-      <section className="relative overflow-hidden bg-cinema-950 border-y border-cinema-800">
-        {/* Wide cinematic placeholder */}
+      {/* ── FULL-WIDTH CINEMATIC VISUAL ── */}
+      <section className="relative overflow-hidden">
         <div className="relative w-full" style={{ aspectRatio: "21/9" }}>
-          <div className="absolute inset-0 bg-gradient-to-r from-cinema-950 via-cinema-900 to-cinema-950" />
-          {/* Acoustic panel side arrays */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 flex gap-1.5 px-3 py-8 opacity-30">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="flex-1 bg-gradient-to-b from-cinema-700 to-cinema-900 rounded-sm" />
-            ))}
-          </div>
-          <div className="absolute right-0 top-0 bottom-0 w-24 flex gap-1.5 px-3 py-8 opacity-30">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className="flex-1 bg-gradient-to-b from-cinema-700 to-cinema-900 rounded-sm" />
-            ))}
-          </div>
-          {/* Screen area */}
-          <div className="absolute inset-x-24 inset-y-8 border border-cinema-700/50 flex items-center justify-center">
+          <Image
+            src="/images/render-small-room-b.jpg"
+            alt="CineLuxe private cinema — full room environment"
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          {/* Cinematic gradient vignette */}
+          <div className="absolute inset-0 bg-gradient-to-t from-cinema-950/80 via-transparent to-cinema-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-cinema-950/60 via-transparent to-cinema-950/60" />
+          {/* Centered copy */}
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 px-6">
             <div className="text-center">
-              <div className="text-xs tracking-[0.4em] text-gray-700 uppercase mb-2">
-                Flagship Installation Photography
-              </div>
-              <div className="gold-divider w-16 mx-auto" />
+              <div className="gold-divider w-12 mx-auto mb-4" />
+              <p className="font-serif text-white text-xl md:text-2xl font-light tracking-wide mb-1">
+                The Panel Is the Room. The Room Is the Experience.
+              </p>
+              <p className="text-gray-400 text-xs tracking-[0.4em] uppercase">
+                CineLuxe — Architectural Acoustic Cinema Systems
+              </p>
             </div>
-            <div className="absolute top-3 left-3 w-8 h-8 border-t border-l border-gold-500/30" />
-            <div className="absolute top-3 right-3 w-8 h-8 border-t border-r border-gold-500/30" />
-            <div className="absolute bottom-3 left-3 w-8 h-8 border-b border-l border-gold-500/30" />
-            <div className="absolute bottom-3 right-3 w-8 h-8 border-b border-r border-gold-500/30" />
           </div>
-          {/* Overlay copy */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-            <p className="text-gray-600 text-[10px] tracking-[0.5em] uppercase">
-              CineLuxe — Where Sound Meets Vision
-            </p>
+          {/* Corner accents */}
+          <div className="absolute top-6 left-6 w-10 h-10 border-t border-l border-gold-500/40" />
+          <div className="absolute top-6 right-6 w-10 h-10 border-t border-r border-gold-500/40" />
+          <div className="absolute bottom-6 left-6 w-10 h-10 border-b border-l border-gold-500/40" />
+          <div className="absolute bottom-6 right-6 w-10 h-10 border-b border-r border-gold-500/40" />
+        </div>
+      </section>
+
+      {/* ── INSTALLATION GALLERY ── */}
+      <section className="py-20 px-6 lg:px-12 bg-cinema-950 border-b border-cinema-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between mb-10">
+            <div className="flex items-center gap-3">
+              <div className="gold-divider w-10 my-0" />
+              <span className="text-xs tracking-[0.3em] uppercase text-gold-400 font-semibold">
+                See It Installed
+              </span>
+            </div>
+            <Link
+              href="/about"
+              className="text-xs tracking-[0.2em] uppercase text-gray-500 hover:text-gold-400 transition-colors"
+            >
+              View More →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+            {galleryImages.map((img, i) => (
+              <div
+                key={i}
+                className="relative aspect-video overflow-hidden group border border-cinema-800 hover:border-gold-500/30 transition-colors duration-300"
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 16vw"
+                />
+                <div className="absolute inset-0 bg-cinema-950/20 group-hover:bg-cinema-950/0 transition-colors duration-500" />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -356,21 +379,23 @@ export default function HomePage() {
                 <span className="gold-text">Nothing Less</span>
               </h2>
               <p className="text-gray-400 leading-relaxed mb-6">
-                Private cinema is one of the fastest-growing categories in ultra-luxury amenities.
-                Buyers at the top of the residential and hospitality market don&apos;t want
-                a home theater — they want an experience that rivals or exceeds the finest
-                commercial venues, in complete privacy.
+                At the top of the residential and hospitality market, a projector and some
+                speakers isn&apos;t enough. These clients want a room — a purpose-built
+                acoustic environment where every surface serves the experience. That&apos;s
+                a different product category, and it commands a different conversation.
               </p>
               <p className="text-gray-500 leading-relaxed">
-                As a CineLuxe dealer, you unlock access to these clients with a product that
-                speaks for itself. Our installations don&apos;t need a hard sell — they
-                simply need to be experienced.
+                CineLuxe gives you something to show them that closes itself. Walk a
+                qualified client through a finished installation and the room does the work.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {venues.map((venue) => (
-                <div key={venue.title} className="p-6 border border-cinema-700 bg-cinema-900 hover:border-gold-500/20 transition-colors">
+                <div
+                  key={venue.title}
+                  className="p-6 border border-cinema-700 bg-cinema-900 hover:border-gold-500/20 transition-colors"
+                >
                   <div className="text-gold-500/70 text-2xl mb-4">{venue.icon}</div>
                   <h3 className="font-serif font-bold text-white mb-2">{venue.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{venue.description}</p>
@@ -381,8 +406,52 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── SPLIT IMAGE + COPY ── */}
+      <section className="bg-cinema-900 border-y border-cinema-700 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 items-stretch">
+          {/* Left: image */}
+          <div className="relative min-h-[400px] lg:min-h-[500px]">
+            <Image
+              src="/images/render-small-room-c.jpg"
+              alt="CineLuxe acoustic panel design detail"
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-cinema-900/60 hidden lg:block" />
+          </div>
+          {/* Right: copy */}
+          <div className="px-8 py-16 lg:px-16 flex flex-col justify-center">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="gold-divider w-10 my-0" />
+              <span className="text-xs tracking-[0.3em] uppercase text-gold-400 font-semibold">
+                The Detail
+              </span>
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white leading-tight mb-6">
+              No Two Rooms <br />
+              <span className="gold-text">Are Ever the Same.</span>
+            </h2>
+            <p className="text-gray-400 leading-relaxed mb-4">
+              Every CineLuxe installation begins with the room — its dimensions, its
+              materials, its purpose. Our acoustic engineers model the space and design
+              a custom panel configuration that controls the sound while defining the
+              room&apos;s visual character.
+            </p>
+            <p className="text-gray-500 leading-relaxed mb-8">
+              The panel layout, geometry, and finish are specified for that room alone.
+              What your client gets is something that couldn&apos;t exist anywhere else —
+              and couldn&apos;t be replicated without starting over.
+            </p>
+            <Link href="/contact" className="btn-gold self-start">
+              Apply to Become a Dealer
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── DEALER BENEFITS ── */}
-      <section className="py-28 px-6 lg:px-12 bg-cinema-900 border-y border-cinema-700">
+      <section className="py-28 px-6 lg:px-12 bg-cinema-950">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -394,8 +463,8 @@ export default function HomePage() {
             </div>
             <h2 className="section-title mb-4">The CineLuxe Dealer Advantage</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Our dealer program is built around one goal: making you successful with the clients
-              you already serve — and the ones you&apos;ve been looking for a reason to reach.
+              Our dealer program is built around one goal: equipping you to win in a market
+              segment your competitors aren&apos;t playing in yet.
             </p>
           </div>
 
@@ -403,7 +472,7 @@ export default function HomePage() {
             {dealerBenefits.map((b) => (
               <div
                 key={b.title}
-                className="bg-cinema-900 p-8 hover:bg-cinema-800 transition-colors group"
+                className="bg-cinema-950 p-8 hover:bg-cinema-900 transition-colors group"
               >
                 <div className="gold-divider w-8 mb-5 group-hover:w-12 transition-all duration-300" />
                 <h3 className="font-serif text-lg font-bold text-white mb-3">{b.title}</h3>
@@ -415,8 +484,21 @@ export default function HomePage() {
       </section>
 
       {/* ── QUOTE / PHILOSOPHY ── */}
-      <section className="py-24 px-6 lg:px-12 bg-cinema-950 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.025]"
+      <section className="relative py-24 px-6 lg:px-12 overflow-hidden">
+        {/* Background image with heavy overlay */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/6894492956658708246.jpg"
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-cinema-950/90" />
+        </div>
+        <div
+          className="absolute inset-0 opacity-[0.025]"
           style={{
             backgroundImage: "radial-gradient(circle, rgba(212,160,23,1) 1px, transparent 1px)",
             backgroundSize: "48px 48px",
@@ -425,8 +507,9 @@ export default function HomePage() {
         <div className="relative max-w-4xl mx-auto text-center">
           <div className="text-gold-500/30 text-7xl font-serif leading-none mb-6">&ldquo;</div>
           <blockquote className="font-serif text-2xl md:text-3xl text-white leading-relaxed font-light mb-8">
-            A private cinema should feel like the rest of the world has
-            ceased to exist. That&apos;s not a feature — it&apos;s the entire point.
+            Most rooms are built and then treated. A CineLuxe room is
+            designed so that the treatment is inseparable from the architecture.
+            That&apos;s what makes the difference between a theater and an experience.
           </blockquote>
           <div className="gold-divider w-12 mx-auto mb-4" />
           <cite className="text-xs tracking-[0.3em] uppercase text-gray-500 not-italic">
@@ -458,8 +541,9 @@ export default function HomePage() {
                 <span className="gold-text">Portfolio?</span>
               </h2>
               <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-                Authorized dealer spots are limited by territory. Apply today and
-                our team will reach out within 3–5 business days to discuss your market.
+                Dealer territories are limited and awarded selectively. Apply today and
+                our team will be in touch within 3–5 business days to discuss your market
+                and what a CineLuxe partnership looks like in practice.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/contact" className="btn-gold">
