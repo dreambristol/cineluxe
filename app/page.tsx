@@ -9,13 +9,6 @@ export const metadata: Metadata = {
     "CineLuxe is a modular acoustic panel system for private cinema — stretch fabric panels, integrated LED lighting, star ceilings, and bass treatment that installs in days, not months.",
 };
 
-const stats = [
-  { value: "500+", label: "Rooms installed worldwide" },
-  { value: "1–3", label: "Days to a finished room" },
-  { value: "40+", label: "Authorized dealer partners" },
-  { value: "H33–H120", label: "Panel depth options" },
-];
-
 const components = [
   {
     id: "panels",
@@ -61,7 +54,7 @@ const whyItWorks = [
   },
   {
     title: "A Fraction of the Cost",
-    body: "Premium acoustic treatment companies quote $150K–$220K+ for a full theater build. CineLuxe delivers comparable acoustic performance and a superior aesthetic at a fraction of that investment.",
+    body: "Established acoustic treatment companies are expensive — significantly so, depending on room size and scope. CineLuxe delivers comparable acoustic performance and a better-looking room at a substantially lower investment, with nothing glued to the wall.",
   },
   {
     title: "Works With Any AV System",
@@ -151,13 +144,18 @@ const dealerBenefits = [
   },
 ];
 
-const galleryImages = [
-  { src: "/images/2390031948913825473.jpg", alt: "CineLuxe panel installation" },
-  { src: "/images/3467950884395237053.jpg", alt: "CineLuxe acoustic panel detail" },
-  { src: "/images/5858629690666302780.jpg", alt: "CineLuxe cinema room" },
-  { src: "/images/7865285807327135041.jpg", alt: "CineLuxe full room view" },
-  { src: "/images/8715399246450177116.jpg", alt: "CineLuxe installation" },
-  { src: "/images/denver-render-rear.jpg", alt: "CineLuxe Denver — seating perspective" },
+// Real build photos — portrait orientation (3:4)
+const galleryPortrait = [
+  { src: "/images/build-img_3606.jpg", alt: "CineLuxe panel installation in progress" },
+  { src: "/images/build-img_3609.jpg", alt: "CineLuxe build — panel mounting" },
+  { src: "/images/build-img_2299.jpg", alt: "CineLuxe cinema room construction" },
+];
+
+// Real build photos — landscape orientation (16:9)
+const galleryLandscape = [
+  { src: "/images/build-img_2308.jpg", alt: "CineLuxe installation overview" },
+  { src: "/images/build-img_3517.jpg", alt: "CineLuxe acoustic treatment" },
+  { src: "/images/build-img_3694.jpg", alt: "CineLuxe installation detail" },
 ];
 
 export default function HomePage() {
@@ -206,9 +204,9 @@ export default function HomePage() {
               stretch fabric panels, integrated LED lighting, fiber optic star ceilings,
               and precision bass treatment — configured for your room, installed in 1–3 days.
             </p>
-            <p className="text-gray-500 text-base leading-relaxed mb-10">
-              Where traditional acoustic builds quote six figures and take months,
-              CineLuxe delivers comparable performance at a fraction of the cost —
+            <p className="text-gray-400 text-base leading-relaxed mb-10">
+              Where traditional acoustic builds take months and cost a fortune,
+              CineLuxe delivers comparable performance in days —
               with nothing glued to the wall.
             </p>
 
@@ -224,24 +222,6 @@ export default function HomePage() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent" />
-      </section>
-
-      {/* ── STATS BAR ── */}
-      <section className="bg-cinema-900 border-y border-cinema-700">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat) => (
-              <div key={stat.label}>
-                <div className="text-3xl md:text-4xl font-serif font-bold gold-text mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-xs uppercase tracking-widest text-gray-500">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ── WHAT IS CINELUXE ── */}
@@ -271,10 +251,10 @@ export default function HomePage() {
               glued, nothing is permanent — every panel can be removed, upgraded,
               or reconfigured.
             </p>
-            <p className="text-gray-500 leading-relaxed">
-              Premium acoustic treatment companies charge $150K–$220K+ for a fully
-              treated theater. CineLuxe delivers comparable acoustic performance and
-              a better-looking room at a fraction of that investment.
+            <p className="text-gray-400 leading-relaxed">
+              The established acoustic treatment market carries a significant price tag.
+              CineLuxe delivers comparable acoustic performance and a better-looking room
+              at a fraction of that investment — and nothing is ever glued to the wall.
             </p>
           </div>
           <div className="relative aspect-video overflow-hidden border border-cinema-700">
@@ -448,7 +428,7 @@ export default function HomePage() {
                     <span className="text-gold-500/70 font-mono text-sm">{step.step}</span>
                   </div>
                   <h3 className="font-serif font-bold text-white text-base mb-2">{step.title}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed">{step.body}</p>
+                  <p className="text-gray-400 text-sm leading-relaxed">{step.body}</p>
                 </div>
                 {i < howItWorks.length - 1 && (
                   <div className="md:hidden mx-auto w-px h-8 bg-cinema-600 mb-4" />
@@ -499,8 +479,28 @@ export default function HomePage() {
               More Installs →
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {galleryImages.map((img, i) => (
+          {/* Portrait row */}
+          <div className="grid grid-cols-3 gap-2 mb-2">
+            {galleryPortrait.map((img, i) => (
+              <div
+                key={i}
+                className="relative overflow-hidden group border border-cinema-800 hover:border-gold-500/30 transition-colors duration-300"
+                style={{ aspectRatio: "3/4" }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 33vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-cinema-950/20 group-hover:bg-cinema-950/0 transition-colors duration-500" />
+              </div>
+            ))}
+          </div>
+          {/* Landscape row */}
+          <div className="grid grid-cols-3 gap-2">
+            {galleryLandscape.map((img, i) => (
               <div
                 key={i}
                 className="relative overflow-hidden group border border-cinema-800 hover:border-gold-500/30 transition-colors duration-300"
@@ -511,7 +511,7 @@ export default function HomePage() {
                   alt={img.alt}
                   fill
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 33vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-cinema-950/20 group-hover:bg-cinema-950/0 transition-colors duration-500" />
               </div>
@@ -552,7 +552,7 @@ export default function HomePage() {
                 <div key={venue.title} className="p-6 border border-cinema-700 bg-cinema-900 hover:border-gold-500/20 transition-colors">
                   <div className="text-gold-500/70 text-2xl mb-4">{venue.icon}</div>
                   <h3 className="font-serif font-bold text-white mb-2">{venue.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{venue.description}</p>
+                  <p className="text-gray-400 text-sm leading-relaxed">{venue.description}</p>
                 </div>
               ))}
             </div>
