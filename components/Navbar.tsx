@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import CineLuxeMark from "@/components/CineLuxeMark";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -20,13 +21,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <div className="w-8 h-8 border border-gold-500 rotate-45 flex items-center justify-center group-hover:border-gold-400 transition-colors">
-                <div className="w-3 h-3 bg-gold-500 rotate-0 group-hover:bg-gold-400 transition-colors" />
-              </div>
-            </div>
-            <span className="text-xl font-serif font-bold tracking-[0.15em] uppercase text-white">
-              Cine<span className="text-gold-400">Luxe</span>
+            <CineLuxeMark className="h-8 w-auto" />
+            <span className="text-xl font-serif font-bold tracking-[0.15em] text-white">
+              CINE<span className="text-gold-400">LUXE</span>
             </span>
           </Link>
 

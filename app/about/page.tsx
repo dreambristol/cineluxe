@@ -224,33 +224,68 @@ export default function AboutPage() {
           <div className="flex items-center gap-3 mb-10">
             <div className="gold-divider w-10 my-0" />
             <span className="text-xs tracking-[0.3em] uppercase text-gold-400 font-semibold">
-              Installations
+              Before &amp; After
             </span>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-            {[
-              { src: "/images/2390031948913825473.jpg", alt: "CineLuxe panel installation" },
-              { src: "/images/3467950884395237053.jpg", alt: "CineLuxe acoustic detail" },
-              { src: "/images/5858629690666302780.jpg", alt: "CineLuxe full room" },
-              { src: "/images/2835573788900979249.jpg", alt: "CineLuxe render" },
-              { src: "/images/1927444799465522527.jpg", alt: "CineLuxe cinema room" },
-              { src: "/images/6061619855247223613.jpg", alt: "CineLuxe panel system" },
-            ].map((img, i) => (
-              <div
-                key={i}
-                className="relative overflow-hidden group border border-cinema-800 hover:border-gold-500/30 transition-colors duration-300"
-                style={{ aspectRatio: "16/9" }}
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-cinema-950/20 group-hover:bg-cinema-950/0 transition-colors duration-500" />
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* ── During Build ── */}
+            <div>
+              <p className="text-[11px] tracking-[0.3em] uppercase text-gray-500 mb-4 pb-3 border-b border-cinema-700">
+                During Installation
+              </p>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { src: "/images/build-img_3606.jpg", alt: "CineLuxe panel installation in progress" },
+                  { src: "/images/build-img_3609.jpg", alt: "CineLuxe build — panel mounting" },
+                  { src: "/images/build-img_3695.jpg", alt: "CineLuxe cinema room construction" },
+                ].map((img, i) => (
+                  <div
+                    key={i}
+                    className="relative overflow-hidden group border border-cinema-800 hover:border-gold-500/30 transition-colors duration-300"
+                    style={{ aspectRatio: "3/4" }}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 1024px) 33vw, 16vw"
+                    />
+                    <div className="absolute inset-0 bg-cinema-950/20 group-hover:bg-cinema-950/0 transition-colors duration-500" />
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* ── Finished Room ── */}
+            <div>
+              <p className="text-[11px] tracking-[0.3em] uppercase text-gold-500/60 mb-4 pb-3 border-b border-cinema-700">
+                Finished Room
+              </p>
+              <div className="flex flex-col gap-2">
+                {[
+                  { src: "/images/denver-render-front.jpg", alt: "CineLuxe finished cinema room — front view" },
+                  { src: "/images/denver-render-rear.jpg", alt: "CineLuxe finished cinema room — seating perspective" },
+                  { src: "/images/render-small-room-c.jpg", alt: "CineLuxe finished cinema room — full configuration" },
+                ].map((img, i) => (
+                  <div
+                    key={i}
+                    className="relative overflow-hidden group border border-cinema-800 hover:border-gold-500/30 transition-colors duration-300"
+                    style={{ aspectRatio: "16/9" }}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-cinema-950/20 group-hover:bg-cinema-950/0 transition-colors duration-500" />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

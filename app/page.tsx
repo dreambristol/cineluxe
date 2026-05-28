@@ -144,18 +144,18 @@ const dealerBenefits = [
   },
 ];
 
-// Real build photos — portrait orientation (3:4)
+// Real build photos — portrait orientation (3:4), highest quality selections
 const galleryPortrait = [
-  { src: "/images/build-img_3606.jpg", alt: "CineLuxe panel installation in progress" },
-  { src: "/images/build-img_3609.jpg", alt: "CineLuxe build — panel mounting" },
-  { src: "/images/build-img_2299.jpg", alt: "CineLuxe cinema room construction" },
+  { src: "/images/build-img_3606.jpg", alt: "CineLuxe installation in progress" },
+  { src: "/images/build-img_3609.jpg", alt: "CineLuxe panel mounting" },
+  { src: "/images/build-img_3695.jpg", alt: "CineLuxe cinema room construction" },
 ];
 
-// Real build photos — landscape orientation (16:9)
+// Finished room renders — landscape (16:9)
 const galleryLandscape = [
-  { src: "/images/build-img_2308.jpg", alt: "CineLuxe installation overview" },
-  { src: "/images/build-img_3517.jpg", alt: "CineLuxe acoustic treatment" },
-  { src: "/images/build-img_3694.jpg", alt: "CineLuxe installation detail" },
+  { src: "/images/denver-render-front.jpg", alt: "CineLuxe finished cinema room — front view" },
+  { src: "/images/denver-render-rear.jpg", alt: "CineLuxe finished cinema room — seating perspective" },
+  { src: "/images/render-small-room-c.jpg", alt: "CineLuxe finished cinema room — full configuration" },
 ];
 
 export default function HomePage() {
