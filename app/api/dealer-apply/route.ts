@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import { insertApplication } from "@/lib/db";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -48,28 +48,20 @@ async function verifyRecaptcha(token: string): Promise<{ ok: boolean; score: num
   return { ok: data.success && score >= 0.5, score };
 }
 
-function createTransporter() {
-  const user = process.env.GMAIL_USER;
-  const pass = process.env.GMAIL_APP_PASSWORD;
-
-  if (!user || !pass) {
-    console.warn("Gmail credentials not set — email notifications disabled");
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.warn("RESEND_API_KEY not set — email notifications disabled");
     return null;
   }
-
-  return nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: { user, pass },
-  });
+  return new Resend(key);
 }
 
 async function sendNotificationEmail(data: Omit<DealerFormPayload, "recaptchaToken">) {
-  const transporter = createTransporter();
-  if (!transporter) return;
+  const resend = getResend();
+  if (!resend) return;
 
-  const toAddress = process.env.GMAIL_NOTIFY_TO ?? process.env.GMAIL_USER;
+  const notifyTo = process.env.RESEND_NOTIFY_TO ?? "dealers@cineluxe.us";
 
   const html = `
     <div style="font-family: Georgia, serif; max-width: 600px; color: #1a1a1a;">
@@ -106,22 +98,24 @@ async function sendNotificationEmail(data: Omit<DealerFormPayload, "recaptchaTok
     </div>
   `;
 
-  await transporter.sendMail({
-    from: `"CineLuxe Site" <${process.env.GMAIL_USER}>`,
-    to: toAddress,
+  const { error } = await resend.emails.send({
+    from: "CineLuxe Site <dealers@cineluxe.us>",
+    to: [notifyTo],
     replyTo: data.email,
     subject: `New Dealer Application — ${data.company} (${data.country})`,
     html,
   });
+
+  if (error) console.error("[dealer-apply] notification email error:", error);
 }
 
 async function sendConfirmationEmail(data: Omit<DealerFormPayload, "recaptchaToken">) {
-  const transporter = createTransporter();
-  if (!transporter) return;
+  const resend = getResend();
+  if (!resend) return;
 
-  await transporter.sendMail({
-    from: `"CineLuxe" <${process.env.GMAIL_USER}>`,
-    to: data.email,
+  const { error } = await resend.emails.send({
+    from: "CineLuxe <dealers@cineluxe.us>",
+    to: [data.email],
     subject: "We received your CineLuxe dealer application",
     html: `
       <div style="font-family: Georgia, serif; max-width: 560px; color: #1a1a1a;">
@@ -143,6 +137,8 @@ async function sendConfirmationEmail(data: Omit<DealerFormPayload, "recaptchaTok
       </div>
     `,
   });
+
+  if (error) console.error("[dealer-apply] confirmation email error:", error);
 }
 
 // ─── Route Handler ────────────────────────────────────────────────────────────
