@@ -117,6 +117,14 @@ export async function listApplications(opts?: {
   return data;
 }
 
+export async function getApplicationById(id: number) {
+  await ensureTable();
+  const result = await sql<DealerApplication>`
+    SELECT * FROM dealer_applications WHERE id = ${id} LIMIT 1;
+  `;
+  return result.rows[0] ?? null;
+}
+
 export async function updateApplicationStatus(
   id: number,
   status: ApplicationStatus,

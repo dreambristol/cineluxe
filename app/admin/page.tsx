@@ -76,7 +76,7 @@ function DetailPanel({
     await fetch(`/api/admin/applications/${app.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status, notes }),
+      body: JSON.stringify({ status, notes, previousStatus: app.status }),
     });
     onStatusChange(app.id, status, notes);
     setSaving(false);

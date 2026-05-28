@@ -6,7 +6,7 @@ import DealerForm from "@/components/DealerForm";
 export const metadata: Metadata = {
   title: "CineLuxe — Acoustic Panel Systems for Private Cinema",
   description:
-    "CineLuxe is a modular acoustic panel system for private cinema — stretch fabric panels, integrated LED lighting, star ceilings, and bass treatment that installs in days, not months.",
+    "CineLuxe is a modular acoustic panel system for private cinema — stretch fabric panels, integrated LED lighting, star ceilings, and bass treatment. Configured for any room, installed without permanent modifications.",
 };
 
 const components = [

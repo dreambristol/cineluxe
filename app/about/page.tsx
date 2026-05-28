@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About CineLuxe — Modular Acoustic Panel Systems",
   description:
-    "CineLuxe manufactures modular acoustic panel systems for private cinema. Stretch fabric panels, integrated LED lighting, fiber optic star ceilings, and bass treatment — configured for any room, installed in days.",
+    "CineLuxe manufactures modular acoustic panel systems for private cinema. Stretch fabric panels, integrated LED lighting, fiber optic star ceilings, and bass treatment — configured for any room, with a clean dealer-led installation.",
 };
 
 const panelOptions = [
@@ -86,7 +86,7 @@ export default function AboutPage() {
             CineLuxe is a modular acoustic panel system for private cinema.
             Aluminum-framed panels with acoustic cores, integrated LED lighting,
             fiber optic star ceilings, and precision bass treatment — configured
-            for any room, installed in 1–3 days. Nothing glued. Nothing permanent.
+            for any room. Nothing glued. Nothing permanent. Lead times vary by package — contact your CineLuxe rep for a project estimate.
           </p>
         </div>
       </section>
@@ -313,8 +313,8 @@ export default function AboutPage() {
           <p className="text-gray-500 leading-relaxed mb-10 max-w-2xl mx-auto">
             Dealers get full acoustic design support on every project. Share the
             room dimensions and we produce the panel layout. You present it,
-            your client approves it, we manufacture and ship. Your team installs
-            in 1–3 days.
+            your client approves it, we manufacture and ship. Lead times vary by
+            package — we'll provide an accurate estimate at quoting stage. Your team installs cleanly with no permanent modifications.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 text-left">
             {[
