@@ -80,7 +80,7 @@ const howItWorks = [
   {
     step: "03",
     title: "Manufactured & Shipped",
-    body: "Custom fabrication takes 7–21 days. DIY panel kits ship in 3–5 business days. Everything arrives ready to hang.",
+    body: "Custom fabricated to your specification. Lead times vary by package — your dealer will confirm the estimate at quoting. Everything arrives ready to install.",
   },
   {
     step: "04",
