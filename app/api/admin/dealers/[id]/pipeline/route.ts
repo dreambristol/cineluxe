@@ -6,6 +6,7 @@ import {
   createToken,
   PipelineStage,
 } from "@/lib/db";
+import { upsertDealerProfile, trackDealerEvent } from "@/lib/klaviyo";
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
@@ -127,7 +128,11 @@ export async function POST(
         const token = await createToken(id, "formal_app", 30);
         const now = new Date();
         await updatePipelineStage(id, "formal_invited", { formalInvitedAt: now });
-        await sendFormalAppInvite(app.first_name, app.email, app.company, token);
+        await Promise.allSettled([
+          sendFormalAppInvite(app.first_name, app.email, app.company, token),
+          upsertDealerProfile({ email: app.email, firstName: app.first_name, lastName: app.last_name, company: app.company, dealerStage: "formal_invited", applicationId: id }),
+          trackDealerEvent(app.email, "Dealer Formal Invited", { company: app.company, application_id: id }),
+        ]);
         return NextResponse.json({ pipeline_stage: "formal_invited" as PipelineStage, formal_invited_at: now.toISOString() });
       }
 
@@ -135,31 +140,51 @@ export async function POST(
         const deadline = new Date();
         deadline.setDate(deadline.getDate() + 30);
         await updatePipelineStage(id, "call_scheduled", { callDeadline: deadline });
-        await sendCallInvite(app.first_name, app.email, app.company);
+        await Promise.allSettled([
+          sendCallInvite(app.first_name, app.email, app.company),
+          upsertDealerProfile({ email: app.email, firstName: app.first_name, lastName: app.last_name, company: app.company, dealerStage: "call_scheduled", applicationId: id }),
+          trackDealerEvent(app.email, "Dealer Call Scheduled", { company: app.company, deadline: deadline.toISOString() }),
+        ]);
         return NextResponse.json({ pipeline_stage: "call_scheduled" as PipelineStage, call_deadline: deadline.toISOString() });
       }
 
       case "mark_call_complete": {
         await updatePipelineStage(id, "call_complete");
+        await Promise.allSettled([
+          upsertDealerProfile({ email: app.email, firstName: app.first_name, lastName: app.last_name, company: app.company, dealerStage: "call_complete", applicationId: id }),
+          trackDealerEvent(app.email, "Dealer Call Complete", { company: app.company }),
+        ]);
         return NextResponse.json({ pipeline_stage: "call_complete" as PipelineStage });
       }
 
       case "send_onboarding": {
         const token = await createToken(id, "onboarding", 30);
         await updatePipelineStage(id, "onboarding_sent");
-        await sendOnboardingInvite(app.first_name, app.email, app.company, token);
+        await Promise.allSettled([
+          sendOnboardingInvite(app.first_name, app.email, app.company, token),
+          upsertDealerProfile({ email: app.email, firstName: app.first_name, lastName: app.last_name, company: app.company, dealerStage: "onboarding_sent", applicationId: id }),
+          trackDealerEvent(app.email, "Dealer Onboarding Sent", { company: app.company }),
+        ]);
         return NextResponse.json({ pipeline_stage: "onboarding_sent" as PipelineStage });
       }
 
       case "activate": {
         const now = new Date();
         await updatePipelineStage(id, "active", { activatedAt: now });
+        await Promise.allSettled([
+          upsertDealerProfile({ email: app.email, firstName: app.first_name, lastName: app.last_name, company: app.company, dealerStage: "active", applicationId: id }),
+          trackDealerEvent(app.email, "Dealer Activated", { company: app.company, activated_at: now.toISOString() }),
+        ]);
         return NextResponse.json({ pipeline_stage: "active" as PipelineStage, activated_at: now.toISOString() });
       }
 
       case "decline": {
         await updatePipelineStage(id, "declined");
-        await sendDeclineEmail(app.first_name, app.email);
+        await Promise.allSettled([
+          sendDeclineEmail(app.first_name, app.email),
+          upsertDealerProfile({ email: app.email, firstName: app.first_name, lastName: app.last_name, company: app.company, dealerStage: "declined", applicationId: id }),
+          trackDealerEvent(app.email, "Dealer Declined", { company: app.company }),
+        ]);
         return NextResponse.json({ pipeline_stage: "declined" as PipelineStage });
       }
 

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { insertApplication } from "@/lib/db";
+import { upsertDealerProfile, trackDealerEvent } from "@/lib/klaviyo";
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -171,10 +172,27 @@ export async function POST(req: NextRequest) {
     const { recaptchaToken, ...formData } = body;
     await insertApplication(formData);
 
-    // 4. Send emails (non-blocking — don't fail the submission if email fails)
+    // 4. Send emails + sync to Klaviyo (non-blocking)
     await Promise.allSettled([
       sendNotificationEmail(formData),
       sendConfirmationEmail(formData),
+      upsertDealerProfile({
+        email: formData.email,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        company: formData.company,
+        dealerStage: "applied",
+        applicationId: 0, // insertApplication doesn't return the ID yet; OK for initial profile
+        extra: {
+          country: formData.country,
+          state: formData.state,
+          business_type: formData.businessType,
+        },
+      }),
+      trackDealerEvent(formData.email, "Dealer Applied", {
+        company: formData.company,
+        country: formData.country,
+      }),
     ]);
 
     return NextResponse.json(
