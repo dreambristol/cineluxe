@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 const steps = [
   { num: "01", title: "Apply", desc: "Submit your dealer application below." },
   { num: "02", title: "Review", desc: "Our team reviews your business within 3–5 business days." },
-  { num: "03", title: "Onboard", desc: "Qualified applicants receive a dealer kit and training schedule." },
-  { num: "04", title: "Sell", desc: "Begin presenting CineLuxe to your clients and earning premium margins." },
+  { num: "03", title: "Onboard", desc: "Qualified applicants are set up and introduced to the CineLuxe system." },
+  { num: "04", title: "Sell", desc: "Begin presenting CineLuxe to your clients." },
 ];
 
 export default function ContactPage() {
