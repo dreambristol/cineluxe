@@ -201,8 +201,8 @@ const buildStages = [
     desc: "Aluminum frames mount on a cleat system — no adhesive, no drywall damage. One to three days from start to finish.",
   },
   {
-    src: "/images/build-img_3517.jpg",
-    alt: "CineLuxe finished private cinema room — panels, LED lighting, star ceiling",
+    src: "/images/build-img_3221.jpg",
+    alt: "CineLuxe finished private cinema room — star ceiling, LED lighting, acoustic panels",
     step: "03",
     label: "Opening Night",
     desc: "The room is ready. Your client screens their first film in a space that performs as well as it looks.",
