@@ -184,6 +184,31 @@ const galleryLandscape = [
   { src: "/images/render-small-room-c.jpg", alt: "CineLuxe finished cinema room — full configuration" },
 ];
 
+// Build progression — installation to finished cinema
+const buildStages = [
+  {
+    src: "/images/build-img_3191.jpg",
+    alt: "CineLuxe panel installation — frames being mounted",
+    step: "01",
+    label: "Installation",
+    desc: "Aluminum frames mount on a cleat system — no adhesive, no drywall damage. One to three days from start to finish.",
+  },
+  {
+    src: "/images/build-img_3206.jpg",
+    alt: "CineLuxe cinema room nearing completion — LED fit-out",
+    step: "02",
+    label: "Fit-Out",
+    desc: "LED strips daisy-chain through the frames. Fiber optic ceiling goes in last. Zero exposed wiring.",
+  },
+  {
+    src: "/images/build-img_2291.jpg",
+    alt: "CineLuxe finished private cinema room — opening night",
+    step: "03",
+    label: "Opening Night",
+    desc: "The room is ready. Your client screens their first film in a space that performs as well as it looks.",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -550,6 +575,52 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── BUILD PROGRESSION ── */}
+      <section className="py-20 px-6 lg:px-12 bg-cinema-900 border-b border-cinema-700">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between mb-10">
+            <div className="flex items-center gap-3">
+              <div className="gold-divider w-10 my-0" />
+              <span className="text-xs tracking-[0.3em] uppercase text-gold-400 font-semibold">
+                From Empty Room to Opening Night
+              </span>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {buildStages.map((stage, i) => (
+              <div key={stage.step} className="group">
+                <div
+                  className="relative overflow-hidden border border-cinema-800 hover:border-gold-500/30 transition-colors duration-300 mb-5"
+                  style={{ aspectRatio: "4/5" }}
+                >
+                  <Image
+                    src={stage.src}
+                    alt={stage.alt}
+                    fill
+                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-cinema-950/10 group-hover:bg-cinema-950/0 transition-colors duration-500" />
+                  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cinema-950/80 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <span className="text-[10px] tracking-[0.3em] uppercase font-mono text-gold-500/70">
+                      Step {stage.step}
+                    </span>
+                  </div>
+                  {i < buildStages.length - 1 && (
+                    <div className="hidden md:flex absolute top-1/2 -right-4 z-10 w-8 items-center justify-center -translate-y-1/2">
+                      <div className="text-gold-500/30 text-lg">→</div>
+                    </div>
+                  )}
+                </div>
+                <h3 className="font-serif font-bold text-white text-lg mb-2">{stage.label}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{stage.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── WHO WE SERVE ── */}
       <section className="py-28 px-6 lg:px-12 bg-cinema-950">
         <div className="max-w-7xl mx-auto">
@@ -620,36 +691,25 @@ export default function HomePage() {
       </section>
 
       {/* ── QUOTE ── */}
-      <section className="relative py-24 px-6 lg:px-12 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/denver-render-rear.jpg"
-            alt=""
-            fill
-            className="object-cover object-center brightness-[0.45]"
-            sizes="100vw"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-cinema-950/60" />
-        </div>
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(212,160,23,1) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div className="relative max-w-4xl mx-auto text-center">
-          <div className="text-gold-500/30 text-7xl font-serif leading-none mb-6">&ldquo;</div>
-          <blockquote className="font-serif text-2xl md:text-3xl text-white leading-relaxed font-light mb-8">
-            Most rooms are built and then treated. CineLuxe rooms are designed
-            so that the treatment is inseparable from the architecture. Nothing
-            glued. Nothing hidden. Nothing compromised.
-          </blockquote>
-          <div className="gold-divider w-12 mx-auto mb-4" />
-          <cite className="text-xs tracking-[0.3em] uppercase text-gray-500 not-italic">
-            CineLuxe Design Philosophy
-          </cite>
+      <section className="py-28 px-6 lg:px-12 bg-cinema-950 border-y border-cinema-700">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid lg:grid-cols-[1px_1fr] gap-0 lg:gap-16 items-start">
+            <div className="hidden lg:block self-stretch w-px bg-gold-500/20" />
+            <div>
+              <div className="text-gold-500/15 text-[96px] md:text-[120px] font-serif leading-none select-none -mb-8 md:-mb-10">
+                &ldquo;
+              </div>
+              <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl text-white leading-relaxed font-light mb-10">
+                Most rooms are built and then treated. CineLuxe rooms are designed
+                so that the treatment is inseparable from the architecture.
+                Nothing glued. Nothing hidden. Nothing compromised.
+              </blockquote>
+              <div className="gold-divider w-12 mb-5" />
+              <cite className="text-xs tracking-[0.3em] uppercase text-gray-500 not-italic">
+                CineLuxe Design Philosophy
+              </cite>
+            </div>
+          </div>
         </div>
       </section>
 
