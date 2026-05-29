@@ -184,25 +184,25 @@ const galleryLandscape = [
   { src: "/images/render-small-room-c.jpg", alt: "CineLuxe finished cinema room — full configuration" },
 ];
 
-// Build progression — installation to finished cinema
+// Build progression — bare room to finished cinema
 const buildStages = [
   {
-    src: "/images/build-img_3191.jpg",
-    alt: "CineLuxe panel installation — frames being mounted",
+    src: "/images/7865285807327135041.jpg",
+    alt: "Bare cinema room before CineLuxe installation — painted walls, carpet, speaker cutouts",
     step: "01",
+    label: "Bare Room",
+    desc: "Painted walls, carpet down, speaker cutouts roughed in. A room waiting for its identity.",
+  },
+  {
+    src: "/images/build-img_3191.jpg",
+    alt: "CineLuxe panel installation — frames being mounted by installers",
+    step: "02",
     label: "Installation",
     desc: "Aluminum frames mount on a cleat system — no adhesive, no drywall damage. One to three days from start to finish.",
   },
   {
-    src: "/images/build-img_3206.jpg",
-    alt: "CineLuxe cinema room nearing completion — LED fit-out",
-    step: "02",
-    label: "Fit-Out",
-    desc: "LED strips daisy-chain through the frames. Fiber optic ceiling goes in last. Zero exposed wiring.",
-  },
-  {
-    src: "/images/build-img_2291.jpg",
-    alt: "CineLuxe finished private cinema room — opening night",
+    src: "/images/build-img_3517.jpg",
+    alt: "CineLuxe finished private cinema room — panels, LED lighting, star ceiling",
     step: "03",
     label: "Opening Night",
     desc: "The room is ready. Your client screens their first film in a space that performs as well as it looks.",
