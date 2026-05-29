@@ -596,11 +596,11 @@ export default function HomePage() {
             src="/images/denver-render-rear.jpg"
             alt=""
             fill
-            className="object-cover object-center brightness-[0.25]"
+            className="object-cover object-center brightness-[0.45]"
             sizes="100vw"
             aria-hidden="true"
           />
-          <div className="absolute inset-0 bg-cinema-950/70" />
+          <div className="absolute inset-0 bg-cinema-950/60" />
         </div>
         <div
           className="absolute inset-0 opacity-[0.02]"
