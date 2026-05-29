@@ -2,9 +2,17 @@ import DealerForm from "@/components/DealerForm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Become a Dealer",
+  title: "Become an Authorized CineLuxe Dealer",
   description:
-    "Apply to join the CineLuxe authorized dealer network. Limited territories available — apply today.",
+    "Apply to join the CineLuxe authorized dealer network. We work with established AV integrators, luxury home builders, and interior designers. Limited territories — apply today.",
+  alternates: { canonical: "https://www.cineluxe.us/contact" },
+  openGraph: {
+    title: "Become an Authorized CineLuxe Dealer",
+    description:
+      "Apply to join the CineLuxe authorized dealer network. We work with AV integrators, luxury home builders, and interior designers. Limited territories.",
+    url: "https://www.cineluxe.us/contact",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "CineLuxe Dealer Program" }],
+  },
 };
 
 const steps = [

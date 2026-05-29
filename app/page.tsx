@@ -6,7 +6,33 @@ import DealerForm from "@/components/DealerForm";
 export const metadata: Metadata = {
   title: "CineLuxe — Acoustic Panel Systems for Private Cinema",
   description:
-    "CineLuxe is a modular acoustic panel system for private cinema — stretch fabric panels, integrated LED lighting, star ceilings, and bass treatment. Configured for any room, installed without permanent modifications.",
+    "CineLuxe is a modular acoustic panel system built for private cinema rooms. Stretch fabric panels, integrated LED lighting, fiber optic star ceilings, and precision bass treatment — configured for any room, no permanent modifications.",
+  alternates: { canonical: "https://www.cineluxe.us" },
+  openGraph: {
+    title: "CineLuxe — Acoustic Panel Systems for Private Cinema",
+    description:
+      "Modular acoustic panels for private cinema — LED lighting, star ceilings, and bass treatment. Installed by authorized dealers.",
+    url: "https://www.cineluxe.us",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "CineLuxe Private Cinema Acoustic Panels" }],
+  },
+};
+
+const serviceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "CineLuxe Modular Acoustic Panel System",
+  description:
+    "Modular acoustic panel system for private cinema rooms. Aluminum-framed stretch fabric panels with acoustic cores, integrated LED lighting channels, fiber optic star ceilings, and precision bass treatment — configured to any room geometry.",
+  brand: { "@type": "Brand", name: "CineLuxe" },
+  url: "https://www.cineluxe.us",
+  image: "https://www.cineluxe.us/og-image.jpg",
+  category: "Home Theater Acoustic Treatment",
+  offers: {
+    "@type": "Offer",
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStoreOnly",
+    seller: { "@type": "Organization", name: "CineLuxe" },
+  },
 };
 
 const components = [
@@ -161,6 +187,10 @@ const galleryLandscape = [
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       {/* ── HERO ── */}
       <section className="relative min-h-[95vh] flex items-center overflow-hidden bg-cinema-950">
         <div className="absolute inset-0">

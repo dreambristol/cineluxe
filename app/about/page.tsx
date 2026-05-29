@@ -3,9 +3,17 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About CineLuxe — Modular Acoustic Panel Systems",
+  title: "About CineLuxe — Modular Acoustic Panel Systems for Private Cinema",
   description:
-    "CineLuxe manufactures modular acoustic panel systems for private cinema. Stretch fabric panels, integrated LED lighting, fiber optic star ceilings, and bass treatment — configured for any room, with a clean dealer-led installation.",
+    "CineLuxe builds modular acoustic panel systems for private cinema rooms. Aluminum-framed stretch fabric panels, integrated LED lighting, fiber optic star ceilings, and precision bass treatment — engineered to disappear into the room.",
+  alternates: { canonical: "https://www.cineluxe.us/about" },
+  openGraph: {
+    title: "About CineLuxe — Modular Acoustic Panel Systems for Private Cinema",
+    description:
+      "Aluminum-framed stretch fabric panels, integrated LED lighting, fiber optic star ceilings, and precision bass treatment — engineered for private cinema.",
+    url: "https://www.cineluxe.us/about",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "CineLuxe Acoustic Panel System" }],
+  },
 };
 
 const panelOptions = [
